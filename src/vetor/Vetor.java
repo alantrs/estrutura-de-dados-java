@@ -1,5 +1,7 @@
 package src.vetor;
 
+import java.util.Arrays;
+
 public class Vetor {
 
     private String[] elementos;
@@ -11,7 +13,7 @@ public class Vetor {
     }
 
     public void adiciona(String elemento) throws Exception{
-        if(this.tamanho > this.elementos.length) {
+        if(this.tamanho < this.elementos.length) {
             this.elementos[this.tamanho] = elemento;
             this.tamanho++;
         }else{
@@ -31,7 +33,22 @@ public class Vetor {
         return tamanho;
     }
 
-    public void setTamanho(Integer tamanho) {
-        this.tamanho = tamanho;
+    @Override
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+
+        s.append("[");
+
+        for(int i = 0; i <this.tamanho-1; i++){
+            s.append(this.elementos[i]);
+            s.append(", ");
+        }
+
+        if(this.tamanho>0){
+            s.append(this.elementos[tamanho-1]);
+        }
+
+        s.append("]");
+        return s.toString();
     }
 }
