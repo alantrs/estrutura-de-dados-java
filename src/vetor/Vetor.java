@@ -10,15 +10,6 @@ public class Vetor {
         this.quantidade = 0;
     }
 
-    public Boolean adiciona(String elemento) {
-        if(this.quantidade < this.elementos.length) {
-            this.elementos[this.quantidade] = elemento;
-            this.quantidade++;
-            return true;
-        }
-        return false;
-    }
-
     public String[] getElementos() {
         return elementos;
     }
@@ -50,10 +41,27 @@ public class Vetor {
         return s.toString();
     }
 
+    public void adiciona(String elemento) {
+        if(this.quantidade > this.elementos.length) {
+            System.out.println("Array cheio");
+        }
+        this.elementos[this.quantidade] = elemento;
+        this.quantidade++;
+    }
+
     public String busca(Integer posicao) {
         if (!(posicao >= 0 && posicao < this.elementos.length)){
             throw new IllegalArgumentException("Posicao invalida");
         }
         return this.elementos[posicao];
+    }
+
+    public Integer verificarExiste(String elemento){
+        for (int i = 0; i < quantidade; i++){
+            if (this.elementos[i].equals(elemento)){
+                return i;
+            }
+        }
+        return -1;
     }
 }
