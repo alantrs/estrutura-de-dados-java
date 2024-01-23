@@ -1,24 +1,22 @@
 package src.vetor;
 
-import java.util.Arrays;
-
 public class Vetor {
 
     private String[] elementos;
-    private Integer tamanho;
+    private Integer quantidade;
 
     public Vetor(Integer capacidade){
         this.elementos = new String[capacidade];
-        this.tamanho = 0;
+        this.quantidade = 0;
     }
 
-    public void adiciona(String elemento) throws Exception{
-        if(this.tamanho < this.elementos.length) {
-            this.elementos[this.tamanho] = elemento;
-            this.tamanho++;
-        }else{
-            throw new Exception("");
+    public Boolean adiciona(String elemento) {
+        if(this.quantidade < this.elementos.length) {
+            this.elementos[this.quantidade] = elemento;
+            this.quantidade++;
+            return true;
         }
+        return false;
     }
 
     public String[] getElementos() {
@@ -29,8 +27,8 @@ public class Vetor {
         this.elementos = elementos;
     }
 
-    public Integer getTamanho() {
-        return tamanho;
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
     @Override
@@ -39,16 +37,23 @@ public class Vetor {
 
         s.append("[");
 
-        for(int i = 0; i <this.tamanho-1; i++){
+        for(int i = 0; i <this.quantidade -1; i++){
             s.append(this.elementos[i]);
             s.append(", ");
         }
 
-        if(this.tamanho>0){
-            s.append(this.elementos[tamanho-1]);
+        if(this.quantidade >0){
+            s.append(this.elementos[quantidade -1]);
         }
 
         s.append("]");
         return s.toString();
+    }
+
+    public String busca(Integer posicao) {
+        if (!(posicao >= 0 && posicao < this.elementos.length)){
+            throw new IllegalArgumentException("Posicao invalida");
+        }
+        return this.elementos[posicao];
     }
 }
