@@ -49,6 +49,15 @@ public class Vetor {
         this.quantidade++;
     }
 
+    public void adiciona(Integer posicao, String elemento){
+
+        for (int i = this.quantidade - 1; i >= posicao; i--){
+            this.elementos[i + 1] = this.elementos[i];
+        }
+        this.elementos[posicao] = elemento;
+        this.quantidade++;
+    }
+
     public String busca(Integer posicao) {
         if (!(posicao >= 0 && posicao < this.elementos.length)){
             throw new IllegalArgumentException("Posicao invalida");
